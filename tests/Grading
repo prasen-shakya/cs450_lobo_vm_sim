@@ -1,0 +1,9 @@
+# Percentage of the testing point total designated for each set of tests.
+
+15.38%  tests/*-address-translation.sh
+15.38%  tests/*-resident-translation.sh
+15.38%  tests/*-hit-fault.sh
+15.38%  tests/*-free-frames.sh
+23.08%  tests/*-replacement-state.sh
+7.69%   tests/*-replacement-policy.sh
+7.69%   tests/*-statistics.sh

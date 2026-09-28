@@ -1,0 +1,26 @@
+P2 Student-Designed Trace
+=========================
+
+Test file:
+student-test-____.sh
+
+Simulator invocation:
+____________________________________________________________
+
+Complete the table below by hand for the address trace used by this test.
+
+VA      VPN     Offset     Hit/Fault     Victim     PFN     PA
+------  ------  ---------  ------------  ---------  ------  ------
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+
+Notes:
+- Use "-" for Victim when no page is replaced.
+- Your selected test must contain at least one HIT.
+- Your selected test must contain at least one PAGE FAULT that requires replacement.
