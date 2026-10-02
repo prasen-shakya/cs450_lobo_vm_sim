@@ -52,16 +52,16 @@ def split_virtual_address(vaddr, pagebits, pagemask):
 
     HINT: OSTEP's paging-linear-translate.py contains analogous logic.
     """
-    vpn = None       # TODO
-    offset = None    # TODO
-    return vpn, offset
+    vpn = vaddr >> pagebits
+    offset = vaddr & pagemask
+    return vpn, offset  
 
 
 # Student TODO 2
 
 def make_physical_address(pfn, offset, pagebits):
     """Construct a physical address from PFN and page offset."""
-    return None      # TODO
+    return (pfn << pagebits) | offset
 
 
 # Student TODO 3
@@ -73,7 +73,11 @@ def find_free_frame(frames):
 
     Return a free PFN, or None if all frames are occupied.
     """
-    return None      # TODO
+    for i in range(0, len(frames)):
+        if frames[i] == None:
+            return i
+
+    return None
 
 
 def access_string(hit):
@@ -197,7 +201,7 @@ for addr_index, vaddr in enumerate(addr_list):
 
     # Student TODO 5: determine hit/page fault from the page table.
     pte = page_table[vpn]
-    hit = False      # TODO
+    hit = pte.present
 
     victim = None
 
@@ -219,20 +223,26 @@ for addr_index, vaddr in enumerate(addr_list):
         if victim is not None:
             # Student TODO 6: evict victim from the VM model.
             # 1. determine which PFN contains victim
+            victim_pfn = page_table[victim].pfn
             # 2. mark victim's PTE nonresident
+            page_table[victim].present = False
             # 3. clear victim's PFN from its PTE
+            page_table[victim].pfn = None
             # 4. preserve that PFN so the incoming page can reuse it
+            pfn = victim_pfn
             # The policy module has already removed victim from its state.
-            pass        # TODO
+           
 
         # Student TODO 7: install vpn into pfn.
         # Update frames[pfn], page_table[vpn].present, and page_table[vpn].pfn.
         # The policy module has already added vpn to its resident-page state.
-        pass            # TODO
+        frames[pfn] = vpn
+        page_table[vpn].present = True
+        page_table[vpn].pfn = pfn
 
     # Student TODO 8: complete the physical-address translation.
-    pfn = None          # TODO
-    paddr = None        # TODO
+    pfn = page_table[vpn].pfn
+    paddr = make_physical_address(pfn, offset, pagebits)
 
     if not options.notrace:
         print(
