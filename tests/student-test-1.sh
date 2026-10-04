@@ -9,6 +9,7 @@ OUTPUT=$(realpath $(dirname $0))/output
 OUT=$OUTPUT/$TEST.out
 EOUT=$OUTPUT/$TEST.eout
 LOG=$OUTPUT/$TEST.log
+
 LOBO="./lobo-vm-sim.py"
 PYTHON=`which python3`
 
@@ -57,7 +58,7 @@ FINALSTATS hits 1 faults 4 hitrate 20.00
 EOF
 
 #
-# Expected output
+# Check results
 #
 diff $EOUT $OUT >> $LOG
 echo "---------" >> $LOG
