@@ -2,24 +2,22 @@ P2 Student-Designed Trace
 =========================
 
 Test file:
-student-test-____.sh
+student-test-3.sh
 
 Simulator invocation:
-____________________________________________________________
+python3 ./lobo-vm-sim.py -s 0 -a 32 -P 4 -C 2 -p FIFO -A 2,6,11,13,11
 
 Complete the table below by hand for the address trace used by this test.
 
 VA      VPN     Offset     Hit/Fault     Victim     PFN     PA
 ------  ------  ---------  ------------  ---------  ------  ------
+0x02    0       0x2        PAGEFAULT     -          0       0x02
+0x06    1       0x2        PAGEFAULT     -          1       0x06
+0x0b    2       0x3        PAGEFAULT     0          0       0x03
+0x0d    3       0x1        PAGEFAULT     1          1       0x05
+0x0b    2       0x3        HIT           -          0       0x03                                                       
                                                         
                                                         
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-
 Notes:
 - Use "-" for Victim when no page is replaced.
 - Your selected test must contain at least one HIT.
